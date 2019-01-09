@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-p11n",
-  "description": "Vue CLI 3 plugin to pluginize your Vue Project",
+  "description": "Vue CLI 3 plugin to pluginize your Vue project",
   "version": "0.0.1",
   "author": {
     "name": "kazuya kawaguchi",

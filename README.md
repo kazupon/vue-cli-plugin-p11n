@@ -2,7 +2,7 @@
 
 > :warning: This project is WIP
 
-Vue CLI 3 plugin to pluginize your Vue Project
+Vue CLI 3 plugin to pluginize your Vue project
 
 ## TODO
 
