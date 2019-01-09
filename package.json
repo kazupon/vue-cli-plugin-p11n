@@ -19,18 +19,24 @@
     "eslint": "^5.12.0",
     "eslint-plugin-vue": "^5.1.0",
     "git-commit-message-convention": "git://github.com/kazupon/git-commit-message-convention.git",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "uglify-js": "^2.7.5"
   },
   "homepage": "https://github.com/kazupon/vue-cli-plugin-p11n#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": "/tests/.*|(\\.|/)(test|spec)\\.jsx?$"
+  },
   "keywords": [
     "plugin",
     "vue",
     "vue-cli"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "testRegex": "/tests/.*|(\\.|/)(test|spec)\\.jsx?$"
-  },
   "license": "MIT",
   "main": "index.js",
   "repository": {
