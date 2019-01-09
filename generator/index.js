@@ -18,16 +18,7 @@ module.exports = (api, options, rootOptions) => {
       `dist/${projectName}.esm.js`,
       //"types",
       'src'
-    ],
-    /*
-    devDependencies: {
-      'rollup': '^0.67.3',
-      'rollup-plugin-babel': '^4.0.3',
-      'rollup-plugin-commonjs': '^9.2.0',
-      'rollup-plugin-node-resolve': '^3.4.0',
-      'rollup-plugin-replace': '^2.1.0',
-      'uglify-js': '^2.7.5'
-    }*/
+    ]
   })
 
   api.render('./templates', options)
