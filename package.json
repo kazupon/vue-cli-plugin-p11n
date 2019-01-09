@@ -32,8 +32,7 @@
   },
   "homepage": "https://github.com/kazupon/vue-cli-plugin-p11n#readme",
   "jest": {
-    "testEnvironment": "node",
-    "testRegex": "/tests/.*|(\\.|/)(test|spec)\\.jsx?$"
+    "testEnvironment": "node"
   },
   "keywords": [
     "plugin",

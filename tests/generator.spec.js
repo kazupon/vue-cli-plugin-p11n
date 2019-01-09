@@ -11,7 +11,6 @@ test('basic', async () => {
     apply: require('../generator'),
     options: {}
   }])
-
   expect(pkg.sideeffects).toBe(false)
   expect(pkg.main).toBe(`dist/${projectName}.common.js`)
   expect(pkg.jsdelivr).toBe(`dist/${projectName}.umd.min.js`)
