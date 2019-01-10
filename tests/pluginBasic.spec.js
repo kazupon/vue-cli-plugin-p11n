@@ -10,7 +10,7 @@ test('basic project', async () => {
       '@vue/cli-plugin-babel': {}
     }
   })
-  expect(project.has('src/lib.js')).toBe(true)
+  expect(project.has('src/plugin.js')).toBe(true)
 
   const targetService = path.join(
     project.dir,

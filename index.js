@@ -30,7 +30,7 @@ module.exports = (api, options) => {
 
     const entries = getAllEntries(
       { name, version }, 
-      { entry: `src/lib.${lang}`, dest: process.cwd() },
+      { entry: `src/plugin.${lang}`, dest: process.cwd() },
       banner({
         name,
         version,
