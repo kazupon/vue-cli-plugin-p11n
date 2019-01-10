@@ -1,5 +1,6 @@
 /*
- * NOTE: if you need to define typing of your plugin
+ * NOTE:
+ *   if you need to define typing of your plugin
  */
 
 // NOTE: default plugin typings

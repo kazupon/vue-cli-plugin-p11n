@@ -10,7 +10,7 @@ test('basic project', async () => {
       '@vue/cli-plugin-babel': {}
     }
   })
-  expect(project.has('src/plugin.js')).toBe(true)
+  expect(project.has('src/index.js')).toBe(true)
 
   const targetService = path.join(
     project.dir,
@@ -24,4 +24,9 @@ test('basic project', async () => {
     `dist/${projectName}.esm.js`
   ]
   distFiles.forEach(file => { expect(project.has(file)).toBe(true) })
+
+  const pkg = JSON.parse(await project.read('package.json') )
+  expect(pkg.private).toBeUndefined()
+  expect(pkg.dependencies['vue']).toBeUndefined()
+  expect(pkg.devDependencies['vue']).not.toBeUndefined()
 })

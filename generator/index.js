@@ -22,19 +22,20 @@ module.exports = (api, options, rootOptions) => {
     ]
   })
 
-  if (api.hasPlugin('typescript')) {
+  const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
+  if (lang === 'ts') {
     applyTypeScript(api)
   }
 
-  const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
+  const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
+  api.injectImports(entryFile, `import './plugin'`)
+
   api.render(`./templates/${lang}`, options)
 
   api.onCreateComplete(() => {
     debug('onCreateComplete called')
-    const pkgPath = api.resolve('package.json')
-    const pkg = JSON.parse(readFile(pkgPath))
-    pkg.scripts['build'] = `vue-cli-service build --lang ${lang}`
-    writeFile(pkgPath, JSON.stringify(pkg, null, 2))
+    replacePackage(api, lang)
+    replaceAppFile(api)
   })
 
   api.postProcessFiles(files => {
@@ -49,4 +50,28 @@ function applyTypeScript (api) {
       'types/index.d.ts'
     ]
   })
+}
+
+function replacePackage (api, lang) {
+  const pkgPath = api.resolve('package.json')
+  const pkg = JSON.parse(readFile(pkgPath))
+  delete pkg.private
+  pkg.devDependencies.vue = pkg.dependencies.vue
+  delete pkg.dependencies.vue
+  pkg.scripts.build = `vue-cli-service build --lang ${lang}`
+  writeFile(pkgPath, JSON.stringify(pkg, null, 2))
+}
+
+function replaceAppFile (api) {
+  const appPath = api.resolve('src/App.vue')
+  const appFile = readFile(appPath)
+  const newAppFile = appFile.replace(/^<template>[^]+<\/script>/, `<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <h1>Welcome to Your Plugin in Vue.js App</h1>
+    <p>add: 1 + 1 = {{ $add(1, 1) }}</p>
+  </div>
+</template>
+`).trim()
+  writeFile(appPath, newAppFile)
 }

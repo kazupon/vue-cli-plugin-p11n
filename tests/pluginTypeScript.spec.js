@@ -11,7 +11,7 @@ test('typescript project', async () => {
       '@vue/cli-plugin-typescript': {}
     }
   })
-  expect(project.has('src/plugin.ts')).toBe(true)
+  expect(project.has('src/index.ts')).toBe(true)
   expect(project.has('types/index.d.ts')).toBe(true)
 
   const targetService = path.join(

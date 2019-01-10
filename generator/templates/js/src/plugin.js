@@ -1,23 +1,17 @@
-const version = '__VERSION__'
+/*
+ * NOTE:
+ *   This file is plugin stub for main.js
+ */
 
-const install = Vue => {
-  /*
-   * NOTE: if you need to extend Vue contstructor, you can extend it in here.
-   */
-  Vue.prototype.$add = (a, b) => {
-    return a + b
-  }
+import Vue from 'vue'
+import plugin from './index'
 
-  // NOTE: the other custom implementation ...
-}
+Vue.use(plugin)
 
-const plugin = {
-  install,
-  version
-}
-
-export default plugin
-
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(plugin)
-}
+/*
+ * NOTE: 
+ *   If you want Vue instance of main.js to import something in your plugin as a Vue option,
+ *   you need to export it here.
+ */
+// export default plugin
+ 

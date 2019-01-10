@@ -1,30 +1,16 @@
-import { VueConstructor, PluginObject } from 'vue'
+/*
+ * NOTE:
+ *   This file is plugin stub for main.ts
+ */
 
-declare global {
-  interface Window {
-    Vue: VueConstructor
-  }
-}
+import Vue, { VueConstructor } from 'vue'
+import plugin from './index'
 
-const version = '__VERSION__'
+Vue.use<VueConstructor>(plugin)
 
-const install = (Vue: VueConstructor): void => {
-  /*
-   * NOTE: if you need to extend Vue contstructor, you can extend it in here.
-   */
-  Vue.prototype.$add = (a: number, b: number): number => {
-    return a + b
-  }
-
-  // NOTE: the other custom implementation ...
-}
-
-const plugin: PluginObject<VueConstructor> = {
-  install,
-  version
-}
-export default plugin
-
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(plugin)
-}
+/*
+ * NOTE: 
+ *   If you want Vue instance of main.ts to import something in your plugin as a Vue option,
+ *   you need to export it here.
+ */
+// export default plugin
