@@ -7,7 +7,7 @@ Vue CLI 3 plugin to pluginize your Vue project
 ## TODO
 
 ### High priority
-- [x] overwrite build command with rollup
+- [x] override build command with rollup
 - [x] typescript
   - [x] project ts files scaffolding
   - [x] package.json (devDependencies, files/types)
@@ -20,7 +20,9 @@ Vue CLI 3 plugin to pluginize your Vue project
 
 ### Low priority
 - [ ] rollup.config.js importing
+- [ ] build command arguments descriptions
 - [ ] add release tools
+- [ ] add CI enviroments
 - [ ] add meta info to package.json
   - [ ] author info
   - [ ] description
