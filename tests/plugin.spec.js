@@ -1,4 +1,4 @@
-jest.setTimeout(120000)
+jest.setTimeout(180000)
 
 const path = require('path')
 const { create } = require('./helper')

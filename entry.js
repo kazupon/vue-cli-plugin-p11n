@@ -42,39 +42,44 @@ function makeEntries (entryPath, destPath, moduleName, packageName, banner) {
   }
 }
   
-function genConfig (options, moduleName, version) {
-  const config = {
+function buildinPlugins (version, env) {
+  const plugins = [
+    babel({
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs'],
+      runtimeHelpers: true,
+    }),
+    node(),
+    cjs()
+  ]
+
+  const replaceOptions = { '__VERSION__': version }
+  if (env) {
+    replaceOptions['process.env.NODE_ENV'] = JSON.stringify(env)
+  }
+  plugins.push(replace(replaceOptions))
+
+  return plugins
+}
+
+function generateConfig (options, moduleName, version) {
+  const plugins = buildinPlugins(version, options.env)
+  return { 
     input: options.entry,
     output: {
       file: options.dest,
       name: moduleName,
       format: options.format,
-      banner: options.banner,
-      sourcemap: true,
+      banner: options.banner
+      // TODO: sourcemap: 'inline'
     },
-    plugins: [
-      babel({
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs'],
-        runtimeHelpers: true,
-      }),
-      node(),
-      cjs()
-    ]
+    plugins
   }
-
-  const replacePluginOptions = { '__VERSION__': version }
-  if (options.env) {
-    replacePluginOptions['process.env.NODE_ENV'] = JSON.stringify(options.env)
-  }
-  config.plugins.push(replace(replacePluginOptions))
-
-  return config
 }
 
 function getAllEntries ({ name, version }, { entry, dest }, banner) {
   const moduleName = classify(name)
   const entries = makeEntries(entry, dest, moduleName, name, banner)
-  return Object.keys(entries).map(name => genConfig(entries[name], moduleName, version))
+  return Object.keys(entries).map(name => generateConfig(entries[name], moduleName, version))
 }
 
 module.exports = getAllEntries

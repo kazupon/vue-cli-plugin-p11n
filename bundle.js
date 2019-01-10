@@ -4,7 +4,7 @@ const zlib = require('zlib')
 const uglify = require('uglify-js')
 const chalk = require('chalk')
 const rollup = require('rollup')
-const { error, info } = require('@vue/cli-shared-utils')
+const { error, info, log, done } = require('@vue/cli-shared-utils')
 
 const getSize = code => (code.length / 1024).toFixed(2) + 'kb'
 
@@ -16,9 +16,14 @@ function bundle (entries) {
       built++
       if (built < total) {
         next()
+      } else {
+        log()
+        done(`Build complete. The ${chalk.cyan('dist')} directory is ready to be deployed.`)
       }
     }).catch(error)
   }
+
+  log('Building for production mode as plugin ...')
   next()
 }
 
@@ -54,7 +59,7 @@ function write (dest, code, zip) {
       if (zip) {
         zlib.gzip(code, (err, zipped) => {
           if (err) { return reject(err) }
-          report(' (gzipped: ' + getSize(zipped) + ')')
+          report(` (gzipped: ${getSize(zipped)})`)
         })
       } else {
         report()
