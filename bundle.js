@@ -28,7 +28,7 @@ function bundleEntry (config) {
   const isProd = /min\.js$/.test(file)
   return rollup.rollup(config)
     .then(bundle => bundle.generate(output))
-    .then(({ code }) => {
+    .then(({ output: [{ code }] }) => {
       if (isProd) {
         const minified = (banner ? banner + '\n' : '') + uglify.minify(code, {
           fromString: true,

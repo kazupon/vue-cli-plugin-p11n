@@ -24,10 +24,10 @@
     "git-commit-message-convention": "git://github.com/kazupon/git-commit-message-convention.git",
     "jest": "^23.6.0",
     "rimraf": "^2.6.3",
-    "rollup": "^0.67.3",
+    "rollup": "^1.1.0",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
     "uglify-js": "^2.7.5"
   },
