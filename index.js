@@ -15,21 +15,30 @@ module.exports = (api, options) => {
     const bundle = require('./bundle')
     const banner = require('./banner')
     const { version, name, author, license } = require(path.join(process.cwd(), './package.json'))
+    const lang = args.lang || 'js'
 
     if (!existsSync('dist')) {
       mkdirSync('dist')
     }
 
+    let config = null
+    let runtime = null
+    if (lang === 'ts') {
+      config = path.join(process.cwd(), './tsconfig.json')
+      runtime = path.join(process.cwd(), './node_modules/typescript')
+    }
+
     const entries = getAllEntries(
       { name, version }, 
-      { entry: 'src/lib.js', dest: process.cwd() },
+      { entry: `src/lib.${lang}`, dest: process.cwd() },
       banner({
         name,
         version,
         author: (author && author.name) || '',
         year: new Date().getFullYear(),
         license: license || 'ISC'
-      })
+      }),
+      { lang, config, runtime }
     )
     bundle(entries)
   })

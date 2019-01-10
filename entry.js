@@ -3,6 +3,7 @@ const babel = require('rollup-plugin-babel')
 const cjs = require('rollup-plugin-commonjs')
 const node = require('rollup-plugin-node-resolve')
 const replace = require('rollup-plugin-replace')
+const typescript = require('rollup-plugin-typescript2')
 
 const classifyRE = /(?:^|[-_\/])(\w)/g
 const toUppser = (_, c) => c ? c.toUpperCase() : ''
@@ -42,15 +43,32 @@ function makeEntries (entryPath, destPath, moduleName, packageName, banner) {
   }
 }
   
-function buildinPlugins (version, env) {
+function buildinPlugins (version, env, langInfo) {
   const plugins = [
-    babel({
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs'],
-      runtimeHelpers: true,
-    }),
     node(),
     cjs()
   ]
+
+  if (langInfo.lang === 'ts') {
+    plugins.push(
+      typescript({
+        typescript: require(langInfo.runtime),
+        tsconfig: langInfo.config
+        /* TODO: 
+        useTsconfigDeclarationDir: false
+        cacheRoot: './node_modules/.cache/rpt2_cache',
+        clean: true
+        */
+      })
+    )
+  } else {
+    plugins.push(
+      babel({
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs'],
+        runtimeHelpers: true,
+      })
+    )
+  }
 
   const replaceOptions = { '__VERSION__': version }
   if (env) {
@@ -61,8 +79,8 @@ function buildinPlugins (version, env) {
   return plugins
 }
 
-function generateConfig (options, moduleName, version) {
-  const plugins = buildinPlugins(version, options.env)
+function generateConfig (options, moduleName, version, langInfo) {
+  const plugins = buildinPlugins(version, options.env, langInfo)
   return { 
     input: options.entry,
     output: {
@@ -76,10 +94,10 @@ function generateConfig (options, moduleName, version) {
   }
 }
 
-function getAllEntries ({ name, version }, { entry, dest }, banner) {
+function getAllEntries ({ name, version }, { entry, dest }, banner, langInfo) {
   const moduleName = classify(name)
   const entries = makeEntries(entry, dest, moduleName, name, banner)
-  return Object.keys(entries).map(name => generateConfig(entries[name], moduleName, version))
+  return Object.keys(entries).map(name => generateConfig(entries[name], moduleName, version, langInfo))
 }
 
 module.exports = getAllEntries

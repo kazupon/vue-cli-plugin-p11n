@@ -8,15 +8,12 @@ Vue CLI 3 plugin to pluginize your Vue project
 
 ### High priority
 - [x] overwrite build command with rollup
-- [ ] typescript
-  - [ ] project ts files scaffolding
-  - [ ] package.json (devDependencies, files/types)
+- [x] typescript
+  - [x] project ts files scaffolding
+  - [x] package.json (devDependencies, files/types)
+- [ ] inject plugin to main.(js|ts)
 - [ ] remove app project files
   - [ ] vue core dependencies from package.json
-  - [ ] `public` directory
-  - [ ] main.[js|ts], `components`, `assets` directories
-  - [ ] unit tests
-- [ ] remove meta info from package.json
 - [ ] unit test codes scaffolding
 - [ ] vuepress
 - [ ] examples
