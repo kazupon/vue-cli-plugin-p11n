@@ -16,7 +16,7 @@ const install = (Vue: VueConstructor): void => {
     return a + b
   }
 
-  // NOTE: the other custom implementation ...s
+  // NOTE: the other custom implementation ...
 }
 
 const plugin: PluginObject<VueConstructor> = {

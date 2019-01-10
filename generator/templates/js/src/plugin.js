@@ -1,9 +1,14 @@
 const version = '__VERSION__'
 
 const install = Vue => {
+  /*
+   * NOTE: if you need to extend Vue contstructor, you can extend it in here.
+   */
   Vue.prototype.$add = (a, b) => {
     return a + b
   }
+
+  // NOTE: the other custom implementation ...
 }
 
 const plugin = {
