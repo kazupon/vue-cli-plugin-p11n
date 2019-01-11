@@ -23,14 +23,20 @@ module.exports = (api, options, rootOptions) => {
   })
 
   const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
+  const unit = getUnitTest(api)
+
   if (lang === 'ts') {
-    applyTypeScript(api)
+    applyTypeScript(api, unit)
   }
 
   const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
   api.injectImports(entryFile, `import './plugin'`)
 
   api.render(`./templates/${lang}`, options)
+
+  if (unit) {
+    api.render(`./templates/unit-${lang}`, { unit })
+  }
 
   api.onCreateComplete(() => {
     debug('onCreateComplete called')
@@ -43,7 +49,7 @@ module.exports = (api, options, rootOptions) => {
   })
 }
 
-function applyTypeScript (api) {
+function applyTypeScript (api, unit) {
   api.extendPackage({
     types: 'types/index.d.ts',
     files: [
@@ -68,10 +74,18 @@ function replaceAppFile (api) {
   const newAppFile = appFile.replace(/^<template>[^]+<\/script>/, `<template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <h1>Welcome to Your Plugin in Vue.js App</h1>
+    <h1>Welcome to Your Plugin in Vue.js</h1>
     <p>add: 1 + 1 = {{ $add(1, 1) }}</p>
   </div>
 </template>
 `).trim()
   writeFile(appPath, newAppFile)
+}
+
+function getUnitTest (api) {
+  return api.hasPlugin('unit-mocha')
+    ? 'mocha'
+    : api.hasPlugin('unit-jest')
+      ? 'jest'
+      : ''
 }

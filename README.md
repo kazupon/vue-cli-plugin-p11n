@@ -14,7 +14,7 @@ Vue CLI 3 plugin to pluginize your Vue project
 - [x] inject plugin to main.(js|ts)
 - [x] remove app project files
   - [x] vue core dependencies from package.json
-- [ ] unit test codes scaffolding
+- [x] unit test codes scaffolding
 - [ ] vuepress
 - [ ] examples
 
