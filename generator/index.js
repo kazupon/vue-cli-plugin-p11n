@@ -8,6 +8,9 @@ module.exports = (api, options, rootOptions) => {
 
   // basic extending
   api.extendPackage({
+    scripts: {
+      demo: 'vue-cli-service demo'
+    },
     sideeffects: false,
     main: `dist/${projectName}.common.js`,
     jsdelivr: `dist/${projectName}.umd.min.js`,
@@ -32,10 +35,10 @@ module.exports = (api, options, rootOptions) => {
   const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
   api.injectImports(entryFile, `import './plugin'`)
 
-  api.render(`./templates/${lang}`, options)
+  api.render(`./templates/${lang}`, { projectName, ...options })
 
   if (unit) {
-    api.render(`./templates/unit-${lang}`, { unit })
+    api.render(`./templates/unit-${lang}`, { unit, ...options })
   }
 
   api.onCreateComplete(() => {

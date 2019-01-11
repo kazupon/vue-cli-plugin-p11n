@@ -42,4 +42,28 @@ module.exports = (api, options) => {
     )
     bundle(entries)
   })
+
+  api.registerCommand('demo', {
+    description: 'demo for plugin',
+    usage: 'vue-cli-service demo entry'
+  }, async args => {
+    const path = require('path')
+    const { existsSync } = require('fs')
+    const chalk = require('chalk')
+    const demo = require('./lib/demo')
+
+    const context = api.getCwd()
+    const entry = args._[0] || ''
+    const open = true
+
+    // TODO: should be checked wheter dist files generating
+    
+    if (!existsSync(path.join(context, './demo', entry))) {
+      // TODO:
+      console.log(chalk.red(`Demo file ${chalk.yellow(entry)} does not exist.`))
+      return
+    }
+
+    demo(context, entry, { open })
+  })
 }
