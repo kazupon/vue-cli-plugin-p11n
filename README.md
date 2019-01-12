@@ -15,8 +15,8 @@ Vue CLI 3 plugin to pluginize your Vue project
 - [x] remove app project files
   - [x] vue core dependencies from package.json
 - [x] unit test codes scaffolding
-- [ ] vuepress
-- [ ] examples
+- [x] support demonstration command
+- [ ] documentation with vuepress
 
 ### Low priority
 - [ ] rollup.config.js importing
