@@ -1,4 +1,7 @@
 const debug = require('debug')('vue-cli-plugin-p11n:service')
+const path = require('path')
+const { existsSync, mkdirSync } = require('fs')
+const chalk = require('chalk')
 
 module.exports = (api, options) => {
   debug('options', options)
@@ -9,13 +12,10 @@ module.exports = (api, options) => {
     options: {
     }
   }, async args => {
-    const path = require('path')
-    const { existsSync, mkdirSync } = require('fs')
-    const getAllEntries = require('./entry')
-    const bundle = require('./bundle')
-    const banner = require('./banner')
-    const { version, name, author, license } = require(path.join(process.cwd(), './package.json'))
-    const lang = args.lang || 'js'
+    const { getAllEntries, banner, bundle } = require('./lib/build')
+
+    const { version, name, author, license } = require(api.resolve('./package.json'))
+    const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
 
     if (!existsSync('dist')) {
       mkdirSync('dist')
@@ -24,13 +24,13 @@ module.exports = (api, options) => {
     let config = null
     let runtime = null
     if (lang === 'ts') {
-      config = path.join(process.cwd(), './tsconfig.json')
-      runtime = path.join(process.cwd(), './node_modules/typescript')
+      config = api.resolve('./tsconfig.json')
+      runtime = api.resolve('./node_modules/typescript')
     }
 
     const entries = getAllEntries(
       { name, version }, 
-      { entry: `src/index.${lang}`, dest: process.cwd() },
+      { entry: `src/index.${lang}`, dest: api.getCwd() },
       banner({
         name,
         version,
@@ -40,6 +40,7 @@ module.exports = (api, options) => {
       }),
       { lang, config, runtime }
     )
+
     bundle(entries)
   })
 
@@ -47,9 +48,6 @@ module.exports = (api, options) => {
     description: 'demo of plugin',
     usage: 'vue-cli-service demo entry'
   }, async args => {
-    const path = require('path')
-    const { existsSync } = require('fs')
-    const chalk = require('chalk')
     const demo = require('./lib/demo')
 
     const context = api.getCwd()

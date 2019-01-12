@@ -1,5 +1,5 @@
 const debug = require('debug')('vue-cli-plugin-p11n:generator')
-const { readFile, writeFile } = require('../utils')
+const { readFile, writeFile } = require('../lib/utils')
 
 module.exports = (api, options, rootOptions) => {
   debug('options', options)
@@ -36,15 +36,16 @@ module.exports = (api, options, rootOptions) => {
   const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
   api.injectImports(entryFile, `import './plugin'`)
 
-  api.render(`./templates/${lang}`, { classStyle,  projectName, ...options })
+  api.render(`./templates/core/${lang}`, { classStyle,  projectName, ...options })
+  api.render(`./templates/demo/${lang}`, { classStyle,  projectName, ...options })
 
   if (unit) {
-    api.render(`./templates/unit-${lang}`, { unit, ...options })
+    api.render(`./templates/unit/${lang}`, { unit, ...options })
   }
 
   api.onCreateComplete(() => {
     debug('onCreateComplete called')
-    replacePackage(api, lang)
+    replacePackage(api, lang, classStyle)
     replaceAppFile(api)
   })
 
@@ -62,13 +63,18 @@ function applyTypeScript (api, unit) {
   })
 }
 
-function replacePackage (api, lang) {
+function replacePackage (api, lang, classStyle) {
   const pkgPath = api.resolve('package.json')
   const pkg = JSON.parse(readFile(pkgPath))
   delete pkg.private
   pkg.devDependencies.vue = pkg.dependencies.vue
   delete pkg.dependencies.vue
-  pkg.scripts.build = `vue-cli-service build --lang ${lang}`
+  if (classStyle) {
+    pkg.devDependencies['vue-class-component'] = pkg.dependencies['vue-class-component']
+    delete pkg.dependencies['vue-class-component']
+    pkg.devDependencies['vue-property-decorator'] = pkg.dependencies['vue-property-decorator']
+    delete pkg.dependencies['vue-property-decorator']
+  }
   writeFile(pkgPath, JSON.stringify(pkg, null, 2))
 }
 

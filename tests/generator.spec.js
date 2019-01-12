@@ -71,7 +71,7 @@ test('jest', async () => {
   }])
 
   const tdd = files['tests/unit/plugin.spec.js']
-  expect(tdd).toMatch(`expect(wrapper.vm.$add(1, 1)).toMatch(2)`)
+  expect(tdd).toMatch(`expect(wrapper.vm.$add(1, 1)).toBe(2)`)
 })
 
 test('mocha', async () => {
