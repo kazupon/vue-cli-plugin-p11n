@@ -1,4 +1,4 @@
-jest.setTimeout(300000)
+jest.setTimeout(6000000)
 
 const path = require('path')
 const generateWithPlugin = require('@vue/cli-test-utils/generateWithPlugin')
@@ -29,7 +29,7 @@ test('demo generation', async () => {
   expect(index).toMatch(`<title>Vue Plugin Demo</title>`)
 })
 
-test('demo command', async () => {
+test.skip('demo command', async () => {
   const projectName = 'vue-i18n-demo'
   const project = await create(projectName, {
     plugins: {
@@ -37,12 +37,12 @@ test('demo command', async () => {
     }
   })
 
+  /*
   const targetService = path.join(
     project.dir,
     './node_modules/@vue/cli-service/bin/vue-cli-service.js'
   )
 
-  /*
   await serve(
     () => project.run(`${targetService} demo Demo.vue`),
     async ({ helpers }) => {
@@ -50,4 +50,29 @@ test('demo command', async () => {
       expect(await helpers.getText('p')).toMatch(msg)
     }
   )*/
+})
+
+
+test.skip('demo command for typescript class style', async () => {
+  const projectName = 'vue-i18n-demo-class'
+  const project = await create(projectName, {
+    plugins: {
+      '@vue/cli-plugin-babel': {},
+      '@vue/cli-plugin-typescript': {
+        classComponent: true 
+      }
+    }
+  })
+})
+
+test('demo command for typescript none class style', async () => {
+  const projectName = 'vue-i18n-demo-none-class'
+  const project = await create(projectName, {
+    plugins: {
+      '@vue/cli-plugin-babel': {},
+      '@vue/cli-plugin-typescript': {
+        classComponent: false
+      }
+    }
+  })
 })

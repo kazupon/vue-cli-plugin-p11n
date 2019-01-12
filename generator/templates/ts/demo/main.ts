@@ -1,8 +1,8 @@
-import Vue from 'vue'
+import Vue, { VueConstructor } from 'vue'
 import App from '~entry'
 import plugin from '../src/index'
 
-Vue.use(plugin)
+Vue.use<VueConstructor>(plugin)
 
 Vue.config.productionTip = false
 

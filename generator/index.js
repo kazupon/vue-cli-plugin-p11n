@@ -27,6 +27,7 @@ module.exports = (api, options, rootOptions) => {
 
   const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
   const unit = getUnitTest(api)
+  const classStyle = isTypeScriptClassStyle(api)
 
   if (lang === 'ts') {
     applyTypeScript(api, unit)
@@ -35,7 +36,7 @@ module.exports = (api, options, rootOptions) => {
   const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
   api.injectImports(entryFile, `import './plugin'`)
 
-  api.render(`./templates/${lang}`, { projectName, ...options })
+  api.render(`./templates/${lang}`, { classStyle,  projectName, ...options })
 
   if (unit) {
     api.render(`./templates/unit-${lang}`, { unit, ...options })
@@ -83,6 +84,18 @@ function replaceAppFile (api) {
 </template>
 `).trim()
   writeFile(appPath, newAppFile)
+}
+
+function isTypeScriptClassStyle (api) {
+  let ret = true
+  try {
+    const clsPath = api.resolve('./node_modules/vue-class-component/package.json')
+    const decoPath = api.resolve('./node_modules/vue-property-decorator/package.json')
+    require(clsPath) && require(decoPath)
+  } catch (e) {
+    ret = false
+  }
+  return ret
 }
 
 function getUnitTest (api) {

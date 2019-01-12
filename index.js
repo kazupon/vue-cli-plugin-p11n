@@ -44,7 +44,7 @@ module.exports = (api, options) => {
   })
 
   api.registerCommand('demo', {
-    description: 'demo for plugin',
+    description: 'demo of plugin',
     usage: 'vue-cli-service demo entry'
   }, async args => {
     const path = require('path')
@@ -54,6 +54,7 @@ module.exports = (api, options) => {
 
     const context = api.getCwd()
     const entry = args._[0] || ''
+    const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
     const open = true
 
     // TODO: should be checked wheter dist files generating
@@ -64,6 +65,6 @@ module.exports = (api, options) => {
       return
     }
 
-    demo(context, entry, { open })
+    demo(context, entry, lang, { open })
   })
 }
