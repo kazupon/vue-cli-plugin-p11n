@@ -1,5 +1,7 @@
 const debug = require('debug')('vue-cli-plugin-p11n:generator')
-const { readFile, writeFile } = require('../lib/utils')
+const chalk = require('chalk')
+const { isObject, isUndef, classify, readFile, writeFile } = require('../lib/utils')
+const { error, warn } = require('@vue/cli-shared-utils')
 
 module.exports = (api, options, rootOptions) => {
   debug('options', options)
@@ -9,7 +11,9 @@ module.exports = (api, options, rootOptions) => {
   // basic extending
   api.extendPackage({
     scripts: {
-      demo: 'vue-cli-service demo'
+      'demo': 'vue-cli-service demo',
+      'docs:dev': 'vue-cli-service docs --mode dev',
+      'docs:build': 'vue-cli-service docs --mode build'
     },
     sideeffects: false,
     main: `dist/${projectName}.common.js`,
@@ -26,6 +30,8 @@ module.exports = (api, options, rootOptions) => {
   })
 
   const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
+  const version = getVersion(api)
+  const author = getAuthor(api)
   const unit = getUnitTest(api)
   const classStyle = isTypeScriptClassStyle(api)
 
@@ -36,8 +42,18 @@ module.exports = (api, options, rootOptions) => {
   const entryFile = lang === 'ts' ? 'src/main.ts' : 'src/main.js'
   api.injectImports(entryFile, `import './plugin'`)
 
+  // TODO: should be refactored variable name ...
   api.render(`./templates/core/${lang}`, { classStyle,  projectName, ...options })
   api.render(`./templates/demo/${lang}`, { classStyle,  projectName, ...options })
+  api.render(`./templates/docs/`, {
+    ...options,
+    author,
+    version,
+    projectName: classify(projectName),
+    moduleName: projectName,
+    distName: projectName,
+    repoName: projectName
+  })
 
   if (unit) {
     api.render(`./templates/unit/${lang}`, { unit, ...options })
@@ -61,6 +77,40 @@ function applyTypeScript (api, unit) {
       'types/index.d.ts'
     ]
   })
+}
+
+function getVersion (api) {
+  let version = ''
+  try {
+    const pkgPath = api.resolve('package.json')
+    const pkg = require(pkgPath)
+    if (!isUndef(pkg.version)) {
+      warn(`${chalk.bold('version')} is undefined in ${chalk.bold('package.json')}`)
+    } else {
+      version = pkg.version
+    }
+  } catch (e) {
+    error('getVersion error', e.message)
+  }
+  return version
+}
+
+function getAuthor (api) {
+  let author = ''
+  try {
+    const pkgPath = api.resolve('package.json')
+    const pkg = require(pkgPath)
+    if (typeof(pkg.author) === 'string') {
+      author = pkg.author
+    } else if (isObject(pkg.author)) {
+      author = pkg.author.name
+    } else {
+      warn(`${chalk.bold('author')} is undefined in ${chalk.bold('package.json')}`)
+    }
+  } catch (e) {
+    error('getAuthor error', e.message)
+  }
+  return author
 }
 
 function replacePackage (api, lang, classStyle) {
