@@ -1,7 +1,7 @@
 const debug = require('debug')('vue-cli-plugin-p11n:generator')
 const chalk = require('chalk')
 const { isObject, isUndef, classify, readFile, writeFile } = require('../lib/utils')
-const { error, warn } = require('@vue/cli-shared-utils')
+const { error, warn, log } = require('@vue/cli-shared-utils')
 
 module.exports = (api, options, rootOptions) => {
   debug('options', options)
@@ -89,7 +89,7 @@ function getVersion (api) {
     const pkgPath = api.resolve('package.json')
     const pkg = require(pkgPath)
     if (!isUndef(pkg.version)) {
-      warn(`${chalk.bold('version')} is undefined in ${chalk.bold('package.json')}`)
+      log(`${chalk.yellow.bold('version')} is undefined in ${chalk.yellow.bold('package.json')}`)
     } else {
       version = pkg.version
     }
@@ -109,7 +109,7 @@ function getAuthor (api) {
     } else if (isObject(pkg.author)) {
       author = pkg.author.name
     } else {
-      warn(`${chalk.bold('author')} is undefined in ${chalk.bold('package.json')}`)
+      log(`${chalk.yellow.bold('author')} is undefined in ${chalk.yellow.bold('package.json')}`)
     }
   } catch (e) {
     error('getAuthor error', e.message)
