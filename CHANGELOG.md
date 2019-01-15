@@ -1,0 +1,28 @@
+<a name="0.0.1"></a>
+## 0.0.1 (2019-01-15)
+
+
+### :star: New Features
+
+* add docs command ([e68a8a4](https://github.com/kazupon/vue-cli-plugin-p11n/commit/e68a8a4))
+* changelog and license template generation ([46b4e80](https://github.com/kazupon/vue-cli-plugin-p11n/commit/46b4e80))
+* demo command ([0084347](https://github.com/kazupon/vue-cli-plugin-p11n/commit/0084347))
+* rollup building ([44697c5](https://github.com/kazupon/vue-cli-plugin-p11n/commit/44697c5))
+* typescript codes scaffolding ([46da187](https://github.com/kazupon/vue-cli-plugin-p11n/commit/46da187))
+* unit test scaffolding ([850753d](https://github.com/kazupon/vue-cli-plugin-p11n/commit/850753d))
+
+
+### :up: Updates
+
+* add meta info ([e5bf539](https://github.com/kazupon/vue-cli-plugin-p11n/commit/e5bf539))
+* fix docs command small issues ([71c5032](https://github.com/kazupon/vue-cli-plugin-p11n/commit/71c5032))
+* rollup related codes ([dbd80c6](https://github.com/kazupon/vue-cli-plugin-p11n/commit/dbd80c6))
+
+
+### :zap: Improvements
+
+* plugin serving ([d98015a](https://github.com/kazupon/vue-cli-plugin-p11n/commit/d98015a))
+* tweak .gitignore for plugin project ([aefa110](https://github.com/kazupon/vue-cli-plugin-p11n/commit/aefa110))
+
+
+
