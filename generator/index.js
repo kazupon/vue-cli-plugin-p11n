@@ -66,6 +66,7 @@ module.exports = (api, options, rootOptions) => {
     debug('onCreateComplete called')
     replacePackage(api, lang, classStyle)
     replaceAppFile(api)
+    repleaceGitIgnore(api)
   })
 
   api.postProcessFiles(files => {
@@ -143,6 +144,36 @@ function replaceAppFile (api) {
 </template>
 `).trim()
   writeFile(appPath, newAppFile)
+}
+
+function repleaceGitIgnore (api) {
+  const ignorePath = api.resolve('.gitignore')
+  writeFile(ignorePath, `.DS_Store
+node_modules
+public
+dist/*.gz
+dist/*.map
+coverage
+docs/.vuepress/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# related test files
+/tests/e2e/reports
+/tests/e2e/videos
+/tests/e2e/screenshots
+
+# editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+  `)
 }
 
 function isTypeScriptClassStyle (api) {
