@@ -1,3 +1,13 @@
+<a name="0.0.2"></a>
+## [0.0.2](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.1...v0.0.2) (2019-01-15)
+
+
+### :zap: Improvements
+
+* **generator:** change warnning to log ([d8585c9](https://github.com/kazupon/vue-cli-plugin-p11n/commit/d8585c9))
+
+
+
 <a name="0.0.1"></a>
 ## 0.0.1 (2019-01-15)
 
