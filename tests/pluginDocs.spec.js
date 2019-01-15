@@ -27,6 +27,8 @@ test('docs generation', async () => {
   expect(readme).toMatch(`# Introduction`)
   const started = files['docs/started.md']
   expect(started).toMatch(`# Getting Started`)
+  const config = files['docs/.vuepress/config.js']
+  expect(config).toMatch(`module.exports = {`)
 })
 
 test('docs command', async () => {

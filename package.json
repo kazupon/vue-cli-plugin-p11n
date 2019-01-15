@@ -33,7 +33,7 @@
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-typescript2": "^0.18.1",
     "uglify-js": "^2.7.5",
-    "vuepress": "^0.14.8"
+    "vuepress": "^1.0.0-alpha.31"
   },
   "homepage": "https://github.com/kazupon/vue-cli-plugin-p11n#readme",
   "jest": {
@@ -52,9 +52,9 @@
   },
   "scripts": {
     "changelog": "conventional-changelog -i CHANGELOG.md -s -n ./node_modules/git-commit-message-convention/convention.js",
+    "clean": "rimraf tests/projects/*",
     "lint": "eslint --fix --ext .js .",
     "release": "conventional-github-releaser -n ./node_modules/git-commit-message-convention/convention.js",
-    "test": "jest",
-    "clean": "rimraf tests/projects/*"
+    "test": "jest"
   }
 }
