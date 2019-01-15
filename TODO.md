@@ -10,15 +10,19 @@
   - [x] vue core dependencies from package.json
 - [x] unit test codes scaffolding
 - [x] support demonstration command
-- [ ] documentation with vuepress
+- [x] documentation with vuepress
 - [ ] .npmignore
 - [ ] tweak commands
+  - [ ] docs command
   - [ ] build (license, author warning ...)
   - [ ] demo (arguments checking)
 
 ### Low priority
 - [ ] rollup.config.js importing
 - [ ] build command arguments descriptions
+- [ ] docs command
+  - [ ] dist option
+  - [ ] target option
 - [ ] add release tools
 - [ ] add CI enviroments
 - [ ] add meta info to package.json
