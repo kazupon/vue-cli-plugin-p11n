@@ -54,6 +54,9 @@ module.exports = (api, options, rootOptions) => {
     distName: projectName,
     repoName: projectName
   })
+  api.render(`./templates/release/`, {
+    author, year: new Date().getFullYear(), ...options
+  })
 
   if (unit) {
     api.render(`./templates/unit/${lang}`, { unit, ...options })
