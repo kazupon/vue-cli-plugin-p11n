@@ -16,6 +16,7 @@ module.exports = (api, options) => {
 
     const { version, name, author, license } = require(api.resolve('./package.json'))
     const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
+    const useBabel = api.hasPlugin('babel')
 
     if (!existsSync('dist')) {
       mkdirSync('dist')
@@ -38,7 +39,7 @@ module.exports = (api, options) => {
         year: new Date().getFullYear(),
         license: license || 'ISC'
       }),
-      { lang, config, runtime }
+      { lang, config, runtime, useBabel }
     )
 
     bundle(entries)
