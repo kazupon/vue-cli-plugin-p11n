@@ -13,23 +13,25 @@
 - [x] documentation with vuepress
 - [x] .npmignore / .gitignore
 - [ ] tweak commands
-  - [ ] docs command
-  - [ ] build (license, author warning ...)
-  - [ ] demo (arguments checking)
+  - [ ] docs command (update versioning)
+  - [x] build (license, author warning ...)
 
 ### Low priority
 - [ ] unit test refactoring
 - [ ] CI integrations
 - [ ] rollup.config.js importing
-- [ ] tweak build command
+- [ ] tweak demo command
+  - [ ] demo (arguments checking)
+- [ ] tweak build command?
   - [ ] arguments descriptions
+  - [ ] banner template
 - [ ] tweak docs command
   - [ ] dist option
   - [ ] target option
 - [ ] add CI command
   - [ ] circle ci
   - [ ] travis ci
-- [ ] release command
+- [ ] add release command
   - [ ] conventional changelog
 - [ ] monorepo with lerna
 - special features for Vue CLI UI

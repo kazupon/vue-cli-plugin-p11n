@@ -3,7 +3,7 @@ jest.setTimeout(60 * 10 * 1000)
 const path = require('path')
 const { create } = require('./helper')
 
-test('build for javascript project', async () => {
+test.skip('build for javascript project', async () => {
   const projectName = 'vue-i18n-build-javascript'
   const project = await create(projectName, {
     plugins: {

@@ -1,6 +1,13 @@
 const debug = require('debug')('vue-cli-plugin-p11n:service')
 const path = require('path')
 const { existsSync, mkdirSync } = require('fs')
+const {
+  loadPackage,
+  normalizeModuleName,
+  normalizeLicense,
+  normalizeVersion,
+  normalizeAuthor
+} = require('./lib/utils')
 const chalk = require('chalk')
 
 module.exports = (api, options) => {
@@ -14,7 +21,12 @@ module.exports = (api, options) => {
   }, async args => {
     const { getAllEntries, banner, bundle } = require('./lib/build')
 
-    const { version, name, author, license } = require(api.resolve('./package.json'))
+    let { name, license, version, author } = loadPackage(api)
+    name = normalizeModuleName(name)
+    license = normalizeLicense(license)
+    version = normalizeVersion(version)
+    author = normalizeAuthor(author)
+
     const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
     const useBabel = api.hasPlugin('babel')
 
@@ -35,9 +47,9 @@ module.exports = (api, options) => {
       banner({
         name,
         version,
-        author: (author && author.name) || '',
+        author,
         year: new Date().getFullYear(),
-        license: license || 'ISC'
+        license
       }),
       { lang, config, runtime, useBabel }
     )

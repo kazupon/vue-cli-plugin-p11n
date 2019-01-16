@@ -1,6 +1,12 @@
 const debug = require('debug')('vue-cli-plugin-p11n:generator')
-const chalk = require('chalk')
-const { isObject, isUndef, classify, readFile, writeFile } = require('../lib/utils')
+const {
+  classify,
+  readFile,
+  writeFile,
+  loadPackage,
+  normalizeVersion,
+  normalizeAuthor
+} = require('../lib/utils')
 const { log } = require(require.resolve('@vue/cli-shared-utils'))
 
 module.exports = (api, options, rootOptions) => {
@@ -29,9 +35,11 @@ module.exports = (api, options, rootOptions) => {
     ]
   })
 
+  let { version, author } = loadPackage(api)
+  version = normalizeVersion(version)
+  author = normalizeAuthor(author)
+
   const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
-  const version = getVersion(api)
-  const author = getAuthor(api)
   const unit = getUnitTest(api)
   const classStyle = isTypeScriptClassStyle(api)
 
@@ -64,7 +72,7 @@ module.exports = (api, options, rootOptions) => {
 
   api.onCreateComplete(() => {
     debug('onCreateComplete called')
-    replacePackage(api, lang, classStyle)
+    replacePackage(api, classStyle)
     replaceAppFile(api)
     repleaceGitIgnore(api)
   })
@@ -74,7 +82,7 @@ module.exports = (api, options, rootOptions) => {
   })
 }
 
-function applyTypeScript (api, unit) {
+function applyTypeScript (api) {
   api.extendPackage({
     types: 'types/index.d.ts',
     files: [
@@ -83,41 +91,7 @@ function applyTypeScript (api, unit) {
   })
 }
 
-function getVersion (api) {
-  let version = ''
-  try {
-    const pkgPath = api.resolve('package.json')
-    const pkg = require(pkgPath)
-    if (!isUndef(pkg.version)) {
-      log(`⚠️  ${chalk.yellow.bold('version')} is undefined in ${chalk.yellow.bold('package.json')}`)
-    } else {
-      version = pkg.version
-    }
-  } catch (e) {
-    console.error('getVersion error', e.message)
-  }
-  return version
-}
-
-function getAuthor (api) {
-  let author = ''
-  try {
-    const pkgPath = api.resolve('package.json')
-    const pkg = require(pkgPath)
-    if (typeof(pkg.author) === 'string') {
-      author = pkg.author
-    } else if (isObject(pkg.author)) {
-      author = pkg.author.name
-    } else {
-      log(`⚠️  ${chalk.yellow.bold('author')} is undefined in ${chalk.yellow.bold('package.json')}`)
-    }
-  } catch (e) {
-    console.error('getAuthor error', e.message)
-  }
-  return author
-}
-
-function replacePackage (api, lang, classStyle) {
+function replacePackage (api, classStyle) {
   const pkgPath = api.resolve('package.json')
   const pkg = JSON.parse(readFile(pkgPath))
   delete pkg.private
@@ -135,6 +109,7 @@ function replacePackage (api, lang, classStyle) {
 function replaceAppFile (api) {
   const appPath = api.resolve('src/App.vue')
   const appFile = readFile(appPath)
+  // TODO: should be extract template
   const newAppFile = appFile.replace(/^<template>[^]+<\/script>/, `<template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
@@ -148,6 +123,7 @@ function replaceAppFile (api) {
 
 function repleaceGitIgnore (api) {
   const ignorePath = api.resolve('.gitignore')
+  // TODO: should be extract template
   writeFile(ignorePath, `.DS_Store
 node_modules
 public
