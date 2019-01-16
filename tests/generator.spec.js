@@ -1,7 +1,7 @@
 const generateWithPlugin = require('@vue/cli-test-utils/generateWithPlugin')
 
 test('basic', async () => {
-  const projectName = 'vue-i18n'
+  const projectName = 'vue-i18n-generator-basic'
   const { pkg, files } = await generateWithPlugin([{
     id: '@vue/cli-service',
     apply: () => {},
@@ -33,8 +33,12 @@ test('basic', async () => {
 })
 
 test('typescript', async () => {
-  const projectName = 'vue-i18n'
+  const projectName = 'vue-i18n-generator-typescript'
   const { pkg, files } = await generateWithPlugin([{
+    id: '@vue/cli-service',
+    apply: () => {},
+    options: { projectName }
+  }, {
     id: '@vue/cli-plugin-typescript',
     apply: () => {},
     options: { projectName }
@@ -55,8 +59,8 @@ test('typescript', async () => {
 })
 
 test('jest', async () => {
-  const projectName = 'vue-i18n'
-  const { pkg, files } = await generateWithPlugin([{
+  const projectName = 'vue-i18n-generator-jest'
+  const { files } = await generateWithPlugin([{
     id: '@vue/cli-service',
     apply: () => {},
     options: { projectName }
@@ -75,8 +79,8 @@ test('jest', async () => {
 })
 
 test('mocha', async () => {
-  const projectName = 'vue-i18n'
-  const { pkg, files } = await generateWithPlugin([{
+  const projectName = 'vue-i18n-generator-mocha'
+  const { files } = await generateWithPlugin([{
     id: '@vue/cli-service',
     apply: () => {},
     options: { projectName }

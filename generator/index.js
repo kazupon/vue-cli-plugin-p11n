@@ -1,7 +1,7 @@
 const debug = require('debug')('vue-cli-plugin-p11n:generator')
 const chalk = require('chalk')
 const { isObject, isUndef, classify, readFile, writeFile } = require('../lib/utils')
-const { error, warn, log } = require('@vue/cli-shared-utils')
+const { log } = require(require.resolve('@vue/cli-shared-utils'))
 
 module.exports = (api, options, rootOptions) => {
   debug('options', options)
@@ -89,12 +89,12 @@ function getVersion (api) {
     const pkgPath = api.resolve('package.json')
     const pkg = require(pkgPath)
     if (!isUndef(pkg.version)) {
-      log(`${chalk.yellow.bold('version')} is undefined in ${chalk.yellow.bold('package.json')}`)
+      log(`⚠️  ${chalk.yellow.bold('version')} is undefined in ${chalk.yellow.bold('package.json')}`)
     } else {
       version = pkg.version
     }
   } catch (e) {
-    error('getVersion error', e.message)
+    console.error('getVersion error', e.message)
   }
   return version
 }
@@ -109,10 +109,10 @@ function getAuthor (api) {
     } else if (isObject(pkg.author)) {
       author = pkg.author.name
     } else {
-      log(`${chalk.yellow.bold('author')} is undefined in ${chalk.yellow.bold('package.json')}`)
+      log(`⚠️  ${chalk.yellow.bold('author')} is undefined in ${chalk.yellow.bold('package.json')}`)
     }
   } catch (e) {
-    error('getAuthor error', e.message)
+    console.error('getAuthor error', e.message)
   }
   return author
 }
