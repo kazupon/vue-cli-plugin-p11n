@@ -2,7 +2,7 @@
 
 Vue CLI 3 plugin to pluginize your Vue project
 
-> p11n = plguinization
+> p11n = pluginization
 
 <a href="https://www.patreon.com/kazupon" target="_blank">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patreon">
