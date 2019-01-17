@@ -1,3 +1,19 @@
+<a name="0.0.3"></a>
+## [0.0.3](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.2...v0.0.3) (2019-01-17)
+
+
+### :bug: Bug Fixes
+
+* failed commands ([19b2d29](https://github.com/kazupon/vue-cli-plugin-p11n/commit/19b2d29))
+
+
+### :zap: Improvements
+
+* **build:** check package meta info ([a3b3a6b](https://github.com/kazupon/vue-cli-plugin-p11n/commit/a3b3a6b))
+* **build:** fix and tweak build command ([8d30a1d](https://github.com/kazupon/vue-cli-plugin-p11n/commit/8d30a1d))
+
+
+
 <a name="0.0.2"></a>
 ## [0.0.2](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.1...v0.0.2) (2019-01-15)
 
