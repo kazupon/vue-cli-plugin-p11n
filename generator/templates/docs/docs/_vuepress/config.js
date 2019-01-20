@@ -1,4 +1,7 @@
 module.exports = {
+  plugins: [
+    require('./plugin.js')
+  ],
   locales: {
     '/': {
       lang: 'en-US',

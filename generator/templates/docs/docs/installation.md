@@ -4,7 +4,7 @@
 
 https://unpkg.com/<%= repoName %>/dist/<%= distName %> 
 
-[unpkg.com](https://unpkg.com) provides NPM-based CDN links. The above link will always point to the latest release on NPM. You can also use a specific version/tag via URLs like https://unpkg.com/<%= repoName %>@<%= version %>/dist/<%= distName %>.js
+[unpkg.com](https://unpkg.com) provides NPM-based CDN links. The above link will always point to the latest release on NPM. You can also use a specific version/tag via URLs like https://unpkg.com/<%= repoName %>@{{ $version }}/dist/<%= distName %>.js
  
 Include <%= moduleName %> after Vue and it will install itself automatically:
 
