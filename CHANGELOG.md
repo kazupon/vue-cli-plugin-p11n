@@ -1,3 +1,14 @@
+<a name="0.0.4"></a>
+## [0.0.4](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.3...v0.0.4) (2019-01-20)
+
+
+### :zap: Improvements
+
+* default docs command ([9e15945](https://github.com/kazupon/vue-cli-plugin-p11n/commit/9e15945))
+* plugin version in docs ([f36e526](https://github.com/kazupon/vue-cli-plugin-p11n/commit/f36e526))
+
+
+
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.2...v0.0.3) (2019-01-17)
 
