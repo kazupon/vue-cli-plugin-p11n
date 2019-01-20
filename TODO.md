@@ -12,8 +12,8 @@
 - [x] support demonstration command
 - [x] documentation with vuepress
 - [x] .npmignore / .gitignore
-- [ ] tweak commands
-  - [ ] docs command (update versioning)
+- [x] tweak commands
+  - [x] docs command (update versioning)
   - [x] build (license, author warning ...)
 
 ### Low priority
