@@ -1,14 +1,15 @@
+jest.mock('/package.json', () => () => {}, { virtual: true })
 const generateWithPlugin = require('@vue/cli-test-utils/generateWithPlugin')
 
-test('basic', async () => {
-  const projectName = 'vue-i18n-generator-basic'
+test('javascript', async () => {
+  const projectName = 'vue-i18n-gen-js'
   const { pkg, files } = await generateWithPlugin([{
     id: '@vue/cli-service',
     apply: () => {},
     options: { projectName }
   }, {
     id: 'p11n',
-    apply: require('../generator'),
+    apply: require('../../generator'),
     options: {}
   }])
 
@@ -33,7 +34,7 @@ test('basic', async () => {
 })
 
 test('typescript', async () => {
-  const projectName = 'vue-i18n-generator-typescript'
+  const projectName = 'vue-i18n-gen-ts'
   const { pkg, files } = await generateWithPlugin([{
     id: '@vue/cli-service',
     apply: () => {},
@@ -44,7 +45,7 @@ test('typescript', async () => {
     options: { projectName }
   }, {
     id: 'p11n',
-    apply: require('../generator'),
+    apply: require('../../generator'),
     options: {}
   }])
 
@@ -56,44 +57,4 @@ test('typescript', async () => {
   const dts = files['types/index.d.ts']
   expect(plugin).toMatch(`import { VueConstructor, PluginObject } from 'vue'`)
   expect(dts).toMatch(`type PluginAddFunction = (a: number, b: number) => number`)
-})
-
-test('jest', async () => {
-  const projectName = 'vue-i18n-generator-jest'
-  const { files } = await generateWithPlugin([{
-    id: '@vue/cli-service',
-    apply: () => {},
-    options: { projectName }
-  }, {
-    id: '@vue/cli-plugin-unit-jest',
-    apply: () => {},
-    options: { }
-  }, {
-    id: 'p11n',
-    apply: require('../generator'),
-    options: {}
-  }])
-
-  const tdd = files['tests/unit/plugin.spec.js']
-  expect(tdd).toMatch(`expect(wrapper.vm.$add(1, 1)).toBe(2)`)
-})
-
-test('mocha', async () => {
-  const projectName = 'vue-i18n-generator-mocha'
-  const { files } = await generateWithPlugin([{
-    id: '@vue/cli-service',
-    apply: () => {},
-    options: { projectName }
-  }, {
-    id: '@vue/cli-plugin-unit-mocha',
-    apply: () => {},
-    options: { }
-  }, {
-    id: 'p11n',
-    apply: require('../generator'),
-    options: {}
-  }])
-
-  const tdd = files['tests/unit/plugin.spec.js']
-  expect(tdd).toMatch(`expect(wrapper.vm.$add(1, 1)).to.equal(2)`)
 })
