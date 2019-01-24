@@ -83,7 +83,7 @@ module.exports = (api, options) => {
     description: 'documentation for plugin',
     usage: 'vue-cli-service docs [options]',
     options: {
-      '--mode': 'specify `dev` or `build` mode (default: `dev`)'
+      '--mode': 'specify `serve` or `build` mode (default: `serve`)'
     }
   }, async args => {
     const bin = require.resolve(path.join(__dirname, './node_modules/.bin/vuepress'))

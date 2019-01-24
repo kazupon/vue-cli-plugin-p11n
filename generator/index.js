@@ -18,7 +18,7 @@ module.exports = (api, options, rootOptions) => {
   api.extendPackage({
     scripts: {
       'demo': 'vue-cli-service demo',
-      'docs:dev': 'vue-cli-service docs --mode dev',
+      'docs:serve': 'vue-cli-service docs --mode serve',
       'docs:build': 'vue-cli-service docs --mode build'
     },
     sideeffects: false,
