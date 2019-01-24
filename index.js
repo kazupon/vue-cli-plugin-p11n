@@ -91,7 +91,3 @@ module.exports = (api, options) => {
     return docs(bin, args)
   })
 }
-
-module.exports.defaultModes = {
-  docs: 'dev'
-}
