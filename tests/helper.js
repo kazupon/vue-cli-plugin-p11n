@@ -1,5 +1,6 @@
 const path = require('path')
 const createTestProject = require('@vue/cli-test-utils/createTestProject')
+const Service = require('@vue/cli-service')
 
 async function create (name, presets) {
   const project = await createTestProject(
@@ -20,6 +21,18 @@ async function create (name, presets) {
   return Promise.resolve(project)
 }
 
+function createMockService (plugins = [], context = '/', init = true, mode) {
+  const service = new Service(context, {
+    plugins,
+    useBuiltIn: false
+  })
+  if (init) {
+    service.init(mode)
+  }
+  return service
+}
+
 module.exports = {
-  create
+  create,
+  createMockService
 }

@@ -71,7 +71,6 @@ module.exports = (api, options) => {
     // TODO: should be checked wheter dist files generating
     
     if (!existsSync(path.join(context, './demo', entry))) {
-      // TODO:
       console.log(chalk.red(`Demo file ${chalk.yellow(entry)} does not exist.`))
       return
     }
@@ -86,6 +85,7 @@ module.exports = (api, options) => {
       '--mode': 'specify `serve` or `build` mode (default: `serve`)'
     }
   }, async args => {
+    args.mode = args.mode || 'serve'
     const bin = require.resolve(path.join(__dirname, './node_modules/.bin/vuepress'))
     const docs = require('./lib/docs')
     return docs(bin, args)
