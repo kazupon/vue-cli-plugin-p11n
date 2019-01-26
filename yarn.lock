@@ -1039,7 +1039,7 @@
     semver "^5.5.0"
     string.prototype.padstart "^3.0.0"
 
-"@vue/cli-test-utils@^3.3.0":
+"@vue/cli-test-utils@^3.3.1":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@vue/cli-test-utils/-/cli-test-utils-3.3.0.tgz#6335216dca4344f8a7d8e354bf4c0391b912a840"
   integrity sha512-TPJxi/SrbMUF+jyGKyUpG5KQi1sXiBSYQgV6un9UFeJv//ZwiMtEw7kTVQ8oYlwp7ZmktryDNjeqe1FfM130sA==
@@ -1093,7 +1093,7 @@
     vue-cli-plugin-apollo "^0.18.1"
     watch "^1.0.2"
 
-"@vue/cli@^3.3.0":
+"@vue/cli@^3.3.1":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@vue/cli/-/cli-3.3.0.tgz#2632ef4e507cc03dccf89d7558d402e0348b75f3"
   integrity sha512-iRncrlX1naNvNV9fgMuYVyHQhXpetbv+GqCM8HoXAekeF5iFhOCtA0U92pp4UnFIadc+kKtul+8VZZaHbrlIBQ==
