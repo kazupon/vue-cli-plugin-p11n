@@ -1,52 +1,59 @@
 const { createMockService } = require('../helper')
 
 beforeEach(() => {
-  jest.mock('execa')
+  jest.mock('../../lib/docs/service')
 })
 
 afterEach(() => {
   jest.clearAllMocks()
-  jest.unmock('execa')
+  jest.unmock('../../lib/docs/service')
 })
 
 test('docs default', () => {
-  const mockExeca = require('execa')
+  const docsService = require('../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
-    apply: require('../../index')
-  }])
+    apply: api => {
+      const docs = require('../../lib/docs/command')(api)
+      api.registerCommand('docs', docs.opts, docs.fn)
+    }
+  }], process.cwd())
   service.run('docs', {})
 
-  const calls = mockExeca.mock.calls
+  const calls = docsService.mock.calls
   expect(calls[0][0]).toMatch('node_modules/vuepress/vuepress.js')
-  expect(calls[0][1][0]).toMatch('serve')
-  expect(calls[0][1][1]).toMatch('docs')
-  expect(calls[0][2]).toEqual({ stdio: 'inherit' })
+  expect(calls[0][1]).toEqual({ _: [], mode: 'serve' })
 })
 
 test('docs serve', () => {
-  const mockExeca = require('execa')
+  const docsService = require('../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
-    apply: require('../../index')
-  }])
+    apply: api => {
+      const docs = require('../../lib/docs/command')(api)
+      api.registerCommand('docs', docs.opts, docs.fn)
+    }
+  }], process.cwd())
   service.run('docs', { mode: 'serve' })
 
-  const calls = mockExeca.mock.calls
-  expect(calls[0][1][0]).toMatch('serve')
+  const calls = docsService.mock.calls
+  expect(calls[0][1]).toEqual({ _: [], mode: 'serve' })
 })
 
 test('docs build', () => {
-  const mockExeca = require('execa')
+  const docsService = require('../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
-    apply: require('../../index')
-  }])
+    apply: api => {
+      const docs = require('../../lib/docs/command')(api)
+      api.registerCommand('docs', docs.opts, docs.fn)
+    }
+  }], process.cwd())
   service.run('docs', { mode: 'build' })
 
-  const calls = mockExeca.mock.calls
-  expect(calls[0][1][0]).toMatch('build')
+  const calls = docsService.mock.calls
+  expect(calls[0][1]).toEqual({ _: [], mode: 'build' })
 })

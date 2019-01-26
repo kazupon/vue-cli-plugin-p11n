@@ -1,93 +1,14 @@
 const debug = require('debug')('vue-cli-plugin-p11n:service')
-const path = require('path')
-const { existsSync, mkdirSync } = require('fs')
-const {
-  loadPackage,
-  normalizeModuleName,
-  normalizeLicense,
-  normalizeVersion,
-  normalizeAuthor
-} = require('./lib/utils')
-const chalk = require('chalk')
 
 module.exports = (api, options) => {
   debug('options', options)
 
-  api.registerCommand('build', {
-    description: 'build for production with rollup',
-    usage: 'vue-cli-service build [options] [entry|pattern]',
-    options: {
-    }
-  }, async args => {
-    const { getAllEntries, banner, bundle } = require('./lib/build')
+  const build = require('./lib/build/command')(api)
+  api.registerCommand('build', build.opts, build.fn)
 
-    let { name, license, version, author } = loadPackage(api)
-    name = normalizeModuleName(name)
-    license = normalizeLicense(license)
-    version = normalizeVersion(version)
-    author = normalizeAuthor(author)
+  const demo = require('./lib/demo/command')(api)
+  api.registerCommand('demo', demo.opts, demo.fn)
 
-    const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
-    const useBabel = api.hasPlugin('babel')
-
-    if (!existsSync('dist')) {
-      mkdirSync('dist')
-    }
-
-    let config = null
-    let runtime = null
-    if (lang === 'ts') {
-      config = api.resolve('./tsconfig.json')
-      runtime = api.resolve('./node_modules/typescript')
-    }
-
-    const entries = getAllEntries(
-      { name, version }, 
-      { entry: `src/index.${lang}`, dest: api.getCwd() },
-      banner({
-        name,
-        version,
-        author,
-        year: new Date().getFullYear(),
-        license
-      }),
-      { lang, config, runtime, useBabel }
-    )
-
-    bundle(entries)
-  })
-
-  api.registerCommand('demo', {
-    description: 'demo of plugin',
-    usage: 'vue-cli-service demo entry'
-  }, async args => {
-    const demo = require('./lib/demo')
-
-    const context = api.getCwd()
-    const entry = args._[0] || ''
-    const lang = api.hasPlugin('typescript') ? 'ts' : 'js'
-    const open = true
-
-    // TODO: should be checked wheter dist files generating
-    
-    if (!existsSync(path.join(context, './demo', entry))) {
-      console.log(chalk.red(`Demo file ${chalk.yellow(entry)} does not exist.`))
-      return
-    }
-
-    demo(context, entry, lang, { open })
-  })
-
-  api.registerCommand('docs', {
-    description: 'documentation for plugin',
-    usage: 'vue-cli-service docs [options]',
-    options: {
-      '--mode': 'specify `serve` or `build` mode (default: `serve`)'
-    }
-  }, async args => {
-    args.mode = args.mode || 'serve'
-    const bin = require.resolve(path.join(__dirname, './node_modules/.bin/vuepress'))
-    const docs = require('./lib/docs')
-    return docs(bin, args)
-  })
+  const docs = require('./lib/docs/command')(api)
+  api.registerCommand('docs', docs.opts, docs.fn)
 }
