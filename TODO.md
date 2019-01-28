@@ -15,10 +15,12 @@
 - [x] tweak commands
   - [x] docs command (update versioning)
   - [x] build (license, author warning ...)
-
-### Low priority
 - [ ] unit test refactoring
 - [ ] CI integrations
+- [ ] documentation
+= [ ] blog
+
+### Next TODOs
 - [ ] rollup.config.js importing
 - [ ] tweak demo command
   - [ ] demo (arguments checking)
