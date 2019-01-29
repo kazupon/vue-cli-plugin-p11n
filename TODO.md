@@ -16,7 +16,7 @@
   - [x] docs command (update versioning)
   - [x] build (license, author warning ...)
 - [x] unit test refactoring
-- [ ] CI integrations
+- [x] CI integrations
 - [ ] documentation
 = [ ] blog
 
