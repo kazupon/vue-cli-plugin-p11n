@@ -52,9 +52,11 @@
   },
   "scripts": {
     "changelog": "conventional-changelog -i CHANGELOG.md -s -n ./node_modules/git-commit-message-convention/convention.js",
-    "clean": "rimraf tests/projects/*",
+    "clean": "rimraf tests/e2e/projects/*",
     "lint": "eslint --fix --ext .js .",
     "release": "conventional-github-releaser -n ./node_modules/git-commit-message-convention/convention.js",
-    "test": "jest ./tests/unit/**/*.spec.js"
+    "test": "npm run test:unit",
+    "test:unit": "jest ./tests/unit/**/*.spec.js",
+    "test:e2e": "jest ./tests/e2e/*.spec.js"
   }
 }

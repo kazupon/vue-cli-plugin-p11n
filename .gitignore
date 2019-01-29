@@ -1,5 +1,5 @@
 node_modules
-tests/projects
+tests/e2e/projects
 .DS_Store
 *.log
 *.swp

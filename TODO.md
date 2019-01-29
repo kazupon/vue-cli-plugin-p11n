@@ -15,7 +15,7 @@
 - [x] tweak commands
   - [x] docs command (update versioning)
   - [x] build (license, author warning ...)
-- [ ] unit test refactoring
+- [x] unit test refactoring
 - [ ] CI integrations
 - [ ] documentation
 = [ ] blog

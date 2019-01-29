@@ -4,12 +4,12 @@ const Service = require('@vue/cli-service')
 
 async function create (name, presets) {
   const project = await createTestProject(
-    name, presets, path.join(process.cwd(), './tests/projects')
+    name, presets, path.join(process.cwd(), './tests/e2e/projects')
   )
 
   // mocking...
   const pkg = JSON.parse(await project.read('package.json'))
-  pkg.devDependencies['vue-cli-plugin-p11n'] = '../../..'
+  pkg.devDependencies['vue-cli-plugin-p11n'] = '../../../..'
   await project.write('package.json', JSON.stringify(pkg, null, 2))
   /*
   jest.mock('@vue/cli-shared-utils')
