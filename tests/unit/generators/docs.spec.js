@@ -2,7 +2,7 @@ const generateWithPlugin = require('@vue/cli-test-utils/generateWithPlugin')
 
 let spy
 beforeEach(() => {
-  const utils = require('../../lib/utils')
+  const utils = require('../../../lib/utils')
   spy = jest.spyOn(utils, 'loadPackage')
   spy.mockImplementation(api => ({
     name: 'vue-i18n',
@@ -24,7 +24,7 @@ test('docs', async () => {
     options: { projectName }
   }, {
     id: 'p11n',
-    apply: require('../../generator'),
+    apply: require('../../../generator'),
     options: {}
   }])
 

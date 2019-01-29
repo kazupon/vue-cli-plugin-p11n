@@ -1,5 +1,5 @@
 const cliServicePath = require.resolve('@vue/cli-service')
-const demoPluginPath = '../../lib/demo/plugin'
+const demoPluginPath = '../../../lib/demo/plugin'
 
 beforeEach(() => {
   jest.mock(cliServicePath)
@@ -14,8 +14,8 @@ afterEach(() => {
 })
 
 test('demo', () => {
-  const service = require('../../lib/demo/service')
-  const mockPlugin = require('../../lib/demo/plugin')
+  const service = require('../../../lib/demo/service')
+  const mockPlugin = require('../../../lib/demo/plugin')
   const mockCliService = require(cliServicePath)
 
   service('/', '/entry', 'ts', { mode: 'build' })

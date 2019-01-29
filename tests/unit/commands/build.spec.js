@@ -1,5 +1,5 @@
 const path = require('path')
-const { createMockService } = require('../helper')
+const { createMockService } = require('../../helper')
 
 let spyLoadModule
 const pkg = {
@@ -16,25 +16,25 @@ beforeEach(() => {
     fs.existsSync = () => true
     return fs
   })
-  jest.mock('../../lib/build/entry', () => {})
-  jest.mock('../../lib/build/bundle', () => {})
-  jest.mock('../../lib/build/service')
-  const utils = require('../../lib/utils')
+  jest.mock('../../../lib/build/entry', () => {})
+  jest.mock('../../../lib/build/bundle', () => {})
+  jest.mock('../../../lib/build/service')
+  const utils = require('../../../lib/utils')
   spyLoadModule = jest.spyOn(utils, 'loadPackage')
 })
 
 afterEach(() => {
   spyLoadModule.mockClear()
   jest.clearAllMocks()
-  jest.unmock('../../lib/build/service')
-  jest.unmock('../../lib/build/bundle')
-  jest.unmock('../../lib/build/entry')
+  jest.unmock('../../../lib/build/service')
+  jest.unmock('../../../lib/build/bundle')
+  jest.unmock('../../../lib/build/entry')
   jest.unmock('fs')
 })
 
 test('build from javascript codes', () => {
   spyLoadModule.mockReturnValueOnce(pkg)
-  const mockBuild = require('../../lib/build/service')
+  const mockBuild = require('../../../lib/build/service')
 
   const service = createMockService([{
     id: 'babel',
@@ -42,7 +42,7 @@ test('build from javascript codes', () => {
   }, {
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const build = require('../../lib/build/command')(api)
+      const build = require('../../../lib/build/command')(api)
       api.registerCommand('build', build.opts, build.fn)
     }
   }], cwd)
@@ -56,7 +56,7 @@ test('build from javascript codes', () => {
 
 test('build from typescript codes', () => {
   spyLoadModule.mockReturnValueOnce(pkg)
-  const mockBuild = require('../../lib/build/service')
+  const mockBuild = require('../../../lib/build/service')
 
   const service = createMockService([{
     id: 'typescript',
@@ -64,7 +64,7 @@ test('build from typescript codes', () => {
   }, {
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const build = require('../../lib/build/command')(api)
+      const build = require('../../../lib/build/command')(api)
       api.registerCommand('build', build.opts, build.fn)
     }
   }], cwd)
@@ -85,12 +85,12 @@ test('warning build', () => {
   const spyLog = jest.spyOn(console, 'log')
   spyLog.mockImplementation(() => {})
   spyLoadModule.mockReturnValueOnce({}) // package info nothing
-  const mockBuild = require('../../lib/build/service')
+  const mockBuild = require('../../../lib/build/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const build = require('../../lib/build/command')(api)
+      const build = require('../../../lib/build/command')(api)
       api.registerCommand('build', build.opts, build.fn)
     }
   }], cwd)

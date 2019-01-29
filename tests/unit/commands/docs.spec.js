@@ -1,21 +1,21 @@
-const { createMockService } = require('../helper')
+const { createMockService } = require('../../helper')
 
 beforeEach(() => {
-  jest.mock('../../lib/docs/service')
+  jest.mock('../../../lib/docs/service')
 })
 
 afterEach(() => {
   jest.clearAllMocks()
-  jest.unmock('../../lib/docs/service')
+  jest.unmock('../../../lib/docs/service')
 })
 
 test('docs default', () => {
-  const docsService = require('../../lib/docs/service')
+  const docsService = require('../../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const docs = require('../../lib/docs/command')(api)
+      const docs = require('../../../lib/docs/command')(api)
       api.registerCommand('docs', docs.opts, docs.fn)
     }
   }], process.cwd())
@@ -27,12 +27,12 @@ test('docs default', () => {
 })
 
 test('docs serve', () => {
-  const docsService = require('../../lib/docs/service')
+  const docsService = require('../../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const docs = require('../../lib/docs/command')(api)
+      const docs = require('../../../lib/docs/command')(api)
       api.registerCommand('docs', docs.opts, docs.fn)
     }
   }], process.cwd())
@@ -43,12 +43,12 @@ test('docs serve', () => {
 })
 
 test('docs build', () => {
-  const docsService = require('../../lib/docs/service')
+  const docsService = require('../../../lib/docs/service')
 
   const service = createMockService([{
     id: 'vue-cli-plugin-p11n',
     apply: api => {
-      const docs = require('../../lib/docs/command')(api)
+      const docs = require('../../../lib/docs/command')(api)
       api.registerCommand('docs', docs.opts, docs.fn)
     }
   }], process.cwd())

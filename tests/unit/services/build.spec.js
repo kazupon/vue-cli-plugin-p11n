@@ -24,7 +24,7 @@ afterEach(() => {
 })
 
 test('build', async () => {
-  const service = require('../../lib/build/service')
+  const service = require('../../../lib/build/service')
   await service(pkg, { entry: `${cwd}/generator/templates/core/js/src/index.js`, dest: cwd }, { lang: 'js', config: null, runtime: null, useBabel: true })
 
   expect(spyWriteFile).toHaveBeenCalledTimes(4)

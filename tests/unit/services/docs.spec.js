@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 test('docs', () => {
-  const service = require('../../lib/docs/service')
+  const service = require('../../../lib/docs/service')
   const mockExeca = require('execa')
 
   service('/bin/vuepress', { mode: 'build' })

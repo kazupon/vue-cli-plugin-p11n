@@ -55,6 +55,6 @@
     "clean": "rimraf tests/projects/*",
     "lint": "eslint --fix --ext .js .",
     "release": "conventional-github-releaser -n ./node_modules/git-commit-message-convention/convention.js",
-    "test": "jest"
+    "test": "jest ./tests/unit/**/*.spec.js"
   }
 }
