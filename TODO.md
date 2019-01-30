@@ -18,7 +18,7 @@
 - [x] unit test refactoring
 - [x] CI integrations
 - [ ] documentation
-= [ ] blog
+- [ ] blog
 
 ### Next TODOs
 - [ ] rollup.config.js importing
