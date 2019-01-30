@@ -1,5 +1,7 @@
 # :electric_plug: vue-cli-plugin-p11n
 
+[![CircleCI](https://circleci.com/gh/kazupon/vue-cli-plugin-p11n.svg?style=svg)](https://circleci.com/gh/kazupon/vue-cli-plugin-p11n)
+
 Vue CLI 3 plugin to pluginize your Vue project
 
 > p11n = pluginization
