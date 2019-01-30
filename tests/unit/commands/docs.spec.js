@@ -22,7 +22,7 @@ test('docs default', () => {
   service.run('docs', {})
 
   const calls = docsService.mock.calls
-  expect(calls[0][0]).toMatch('node_modules/vuepress/vuepress.js')
+  expect(calls[0][0]).toMatch(`${process.cwd()}/node_modules/vuepress/cli.js`)
   expect(calls[0][1]).toEqual({ _: [], mode: 'serve' })
 })
 
