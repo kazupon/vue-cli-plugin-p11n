@@ -29,7 +29,8 @@ test('docs', async () => {
   }])
 
   // check pkg
-  expect(pkg.scripts['docs:serve']).toMatch('vue-cli-service docs --mode dev')
+  expect(pkg.scripts['docs']).toMatch('npm run docs:serve')
+  expect(pkg.scripts['docs:serve']).toMatch('vue-cli-service docs --mode serve')
   expect(pkg.scripts['docs:build']).toMatch('vue-cli-service docs --mode build')
 
   // check files

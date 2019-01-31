@@ -23,7 +23,7 @@ test('docs default', () => {
 
   const calls = docsService.mock.calls
   expect(calls[0][0]).toMatch(`${process.cwd()}/node_modules/vuepress/cli.js`)
-  expect(calls[0][1]).toEqual({ _: [], mode: 'serve' })
+  expect(calls[0][1]).toEqual({ _: [], mode: 'dev' })
 })
 
 test('docs serve', () => {
@@ -39,7 +39,7 @@ test('docs serve', () => {
   service.run('docs', { mode: 'serve' })
 
   const calls = docsService.mock.calls
-  expect(calls[0][1]).toEqual({ _: [], mode: 'serve' })
+  expect(calls[0][1]).toEqual({ _: [], mode: 'dev' })
 })
 
 test('docs build', () => {
