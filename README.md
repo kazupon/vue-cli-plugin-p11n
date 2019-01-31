@@ -33,7 +33,7 @@ vue add p11n
 ```
 
 ## :white_check_mark: TODO
-See the [here](./TODO.md)
+See the [GitHub projects](https://github.com/kazupon/vue-cli-plugin-p11n/projects/1)
 
 ## :copyright: License
 
