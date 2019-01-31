@@ -9,7 +9,7 @@ import plugin from './index'
 Vue.use(plugin)
 
 /*
- * NOTE: 
+ * NOTE:
  *   If you want Vue instance of main.js to import something in your plugin as a Vue option,
  *   you need to export it here.
  */
