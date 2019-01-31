@@ -1,3 +1,18 @@
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.4...v0.1.0) (2019-01-31)
+
+
+### :up: Updates
+
+* fix docs generator ([d74366c](https://github.com/kazupon/vue-cli-plugin-p11n/commit/d74366c))
+
+
+### :boom: Breaking changes
+
+* **docs:** change development mode name ([0c53f4a](https://github.com/kazupon/vue-cli-plugin-p11n/commit/0c53f4a))
+* **docs:** remove default modes ([cbd761a](https://github.com/kazupon/vue-cli-plugin-p11n/commit/cbd761a))
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.3...v0.0.4) (2019-01-20)
 
