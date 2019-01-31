@@ -1,3 +1,17 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.0...v0.1.1) (2019-01-31)
+
+
+### :zap: Improvements
+
+* **docs:** add cli service docs:serve alias command ([59b2b2b](https://github.com/kazupon/vue-cli-plugin-p11n/commit/59b2b2b))
+
+
+### :up: Updates
+
+* change TODO management ([6a88c56](https://github.com/kazupon/vue-cli-plugin-p11n/commit/6a88c56))
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.0.4...v0.1.0) (2019-01-31)
 
