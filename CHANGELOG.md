@@ -1,3 +1,18 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.1...v0.1.2) (2019-02-01)
+
+
+### :zap: Improvements
+
+* **build:** suppress rollup deprecated warning ([3604589](https://github.com/kazupon/vue-cli-plugin-p11n/commit/3604589))
+
+
+### NOTE
+
+* build: https://github.com/ezolenko/rollup-plugin-typescript2/issues/126
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.0...v0.1.1) (2019-01-31)
 
