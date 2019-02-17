@@ -19,7 +19,7 @@
 ```javascript
 // If using a module system (e.g. via Vue CLI), import Vue and <%= moduleName %> and then call Vue.use(<%= moduleName %>).
 // import Vue from 'vue'
-// import <%= moduleName %> from '<= repoName %>'
+// import <%= moduleName %> from '<%= repoName %>'
 // 
 // Vue.use(<%= moduleName %>)
 
