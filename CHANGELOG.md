@@ -1,3 +1,18 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.2...v0.1.3) (2019-02-18)
+
+
+### :bug: Bug Fixes
+
+* **docs:** Missing tag in generated docs by [@d0whc3r](https://github.com/d0whc3r) ([221a6c6](https://github.com/kazupon/vue-cli-plugin-p11n/commit/221a6c6))
+
+
+### :zap: Improvements
+
+* **core:** support scoped package [#10](https://github.com/kazupon/vue-cli-plugin-p11n/issues/10) ([#12](https://github.com/kazupon/vue-cli-plugin-p11n/issues/12)) by [@EvanBurbidge](https://github.com/EvanBurbidge) ([0322146](https://github.com/kazupon/vue-cli-plugin-p11n/commit/0322146)), closes [#10](https://github.com/kazupon/vue-cli-plugin-p11n/issues/10) [#12](https://github.com/kazupon/vue-cli-plugin-p11n/issues/12)
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.1...v0.1.2) (2019-02-01)
 
