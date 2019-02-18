@@ -5,15 +5,16 @@ const {
   writeFile,
   loadPackage,
   normalizeVersion,
-  normalizeAuthor
+  normalizeAuthor,
+  stripNamespaceIfExists
 } = require('../lib/utils')
 const { log } = require(require.resolve('@vue/cli-shared-utils'))
 
 module.exports = (api, options, rootOptions) => {
   debug('options', options)
   debug('rootOptions', rootOptions)
-  const { projectName } = rootOptions
-
+  let { projectName } = rootOptions
+  projectName = stripNamespaceIfExists(projectName);
   // basic extending
   api.extendPackage({
     scripts: {
