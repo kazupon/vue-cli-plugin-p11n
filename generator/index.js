@@ -14,7 +14,7 @@ module.exports = (api, options, rootOptions) => {
   debug('options', options)
   debug('rootOptions', rootOptions)
   let { projectName } = rootOptions
-  projectName = stripNamespaceIfExists(projectName);
+  projectName = stripNamespaceIfExists(projectName)
   // basic extending
   api.extendPackage({
     scripts: {
