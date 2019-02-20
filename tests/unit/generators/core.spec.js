@@ -27,7 +27,7 @@ test('javascript', async () => {
     apply: require('../../../generator'),
     options: {}
   }])
-  checkPackageExpectations(pkg, projectName);
+  checkPackageExpectations(pkg, projectName)
   // check files
   const plugin = files['src/index.js']
   expect(plugin).toMatch(`Vue.prototype.$add = (a, b) => {`)
@@ -60,8 +60,8 @@ test('typescript', async () => {
 })
 
 test('javascript with namespace', async () => {
-  const projectName = '@testing/vue-i18n-gen-js';
-  const projectNameNoNamespace = 'vue-i18n-gen-js';
+  const projectName = '@testing/vue-i18n-gen-js'
+  const projectNameNoNamespace = 'vue-i18n-gen-js'
 
   const { pkg, files } = await generateWithPlugin([{
     id: '@vue/cli-service',
@@ -72,7 +72,7 @@ test('javascript with namespace', async () => {
     apply: require('../../../generator'),
     options: {}
   }])
-  checkPackageExpectations(pkg, projectNameNoNamespace);
+  checkPackageExpectations(pkg, projectNameNoNamespace)
   // check files
   const plugin = files['src/index.js']
   expect(plugin).toMatch(`Vue.prototype.$add = (a, b) => {`)
@@ -80,7 +80,7 @@ test('javascript with namespace', async () => {
 
 function checkPackageExpectations (pkg, name) {
   // check pkg
-  console.log('checking package');
+  console.log('checking package')
   expect(pkg.sideeffects).toBe(false)
   expect(pkg.main).toBe(`dist/${name}.common.js`)
   expect(pkg.jsdelivr).toBe(`dist/${name}.umd.min.js`)
@@ -92,7 +92,7 @@ function checkPackageExpectations (pkg, name) {
     `dist/${name}.umd.js`,
     `dist/${name}.esm.js`,
     'src'
-  ];
+  ]
 
   distFiles.forEach(file => { expect(pkg.files).toContain(file) })
 }
