@@ -1,3 +1,13 @@
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.3...v0.1.4) (2019-02-22)
+
+
+### :bug: Bug Fixes
+
+* **core:** Normalize scoped names in build ([#13](https://github.com/kazupon/vue-cli-plugin-p11n/issues/13)) by [@d0whc3r](https://github.com/d0whc3r) ([6439350](https://github.com/kazupon/vue-cli-plugin-p11n/commit/6439350)), closes [#13](https://github.com/kazupon/vue-cli-plugin-p11n/issues/13)
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.2...v0.1.3) (2019-02-18)
 
