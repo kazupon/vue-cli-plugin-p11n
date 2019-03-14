@@ -18,6 +18,8 @@ module.exports = (api, options, rootOptions) => {
   // basic extending
   api.extendPackage({
     scripts: {
+      'prepublish': 'vue-cli-service lint && vue-cli-service docs --mode build && vue-cli-service build',
+      'start': 'vue-cli-service serve',
       'demo': 'vue-cli-service demo',
       'docs': 'npm run docs:serve',
       'docs:serve': 'vue-cli-service docs --mode serve',

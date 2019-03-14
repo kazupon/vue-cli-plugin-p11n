@@ -81,6 +81,7 @@ test('javascript with namespace', async () => {
 function checkPackageExpectations (pkg, name) {
   // check pkg
   console.log('checking package')
+  expect(pkg.scripts['prepublish']).toMatch('vue-cli-service lint && vue-cli-service docs --mode build && vue-cli-service build')
   expect(pkg.sideeffects).toBe(false)
   expect(pkg.main).toBe(`dist/${name}.common.js`)
   expect(pkg.jsdelivr).toBe(`dist/${name}.umd.min.js`)
