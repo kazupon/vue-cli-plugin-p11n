@@ -1,3 +1,13 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.4...v0.2.0) (2019-03-15)
+
+
+### :star: New Features
+
+* prepublish hook and start script ([#17](https://github.com/kazupon/vue-cli-plugin-p11n/issues/17)) by [@mszkb](https://github.com/mszkb) ([e92399c](https://github.com/kazupon/vue-cli-plugin-p11n/commit/e92399c)), closes [#17](https://github.com/kazupon/vue-cli-plugin-p11n/issues/17)
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.3...v0.1.4) (2019-02-22)
 
