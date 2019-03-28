@@ -1,3 +1,13 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.2.0...v0.2.1) (2019-03-28)
+
+
+### :zap: Improvements
+
+* **build:** improve single-file components bindling ([#20](https://github.com/kazupon/vue-cli-plugin-p11n/issues/20)) by [@EtienneSchmitz](https://github.com/EtienneSchmitz) ([1011408](https://github.com/kazupon/vue-cli-plugin-p11n/commit/1011408)), closes [#20](https://github.com/kazupon/vue-cli-plugin-p11n/issues/20) [#19](https://github.com/kazupon/vue-cli-plugin-p11n/issues/19)
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.1.4...v0.2.0) (2019-03-15)
 
