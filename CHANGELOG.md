@@ -1,3 +1,13 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.2.1...v0.3.0) (2019-05-14)
+
+
+### :star: New Features
+
+* Automatically insert node_modules as externals ([#22](https://github.com/kazupon/vue-cli-plugin-p11n/issues/22)) by [@CrashyBang](https://github.com/CrashyBang) ([c519d43](https://github.com/kazupon/vue-cli-plugin-p11n/commit/c519d43)), closes [#22](https://github.com/kazupon/vue-cli-plugin-p11n/issues/22)
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.2.0...v0.2.1) (2019-03-28)
 
