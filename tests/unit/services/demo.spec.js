@@ -18,7 +18,7 @@ test('demo', () => {
   const mockPlugin = require('../../../lib/demo/plugin')
   const mockCliService = require(cliServicePath)
 
-  service('/', '/entry', 'ts', { mode: 'build' })
+  service('/', '/entry', 'ts', { mode: 'build' }, 'serve')
 
   const mockCliServiceCalls = mockCliService.mock.calls
   expect(mockCliServiceCalls[0][0]).toMatch('/')
@@ -29,5 +29,5 @@ test('demo', () => {
   expect(mockPluginCalls[0][2]).toMatch('ts')
 
   const instance = mockCliService.mock.instances[0]
-  expect(instance.run).toHaveBeenCalled()
+  expect(instance.run.mock.calls).toEqual([['serve', { mode: 'build' }]])
 })
