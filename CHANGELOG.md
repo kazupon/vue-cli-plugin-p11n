@@ -1,3 +1,13 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.3.0...v0.4.0) (2019-08-19)
+
+
+### :star: New Features
+
+* **demo:** enable build demo ([#35](https://github.com/kazupon/vue-cli-plugin-p11n/issues/35)) by [@miyanokomiya](https://github.com/miyanokomiya) ([8de8cb9](https://github.com/kazupon/vue-cli-plugin-p11n/commit/8de8cb9)), closes [#35](https://github.com/kazupon/vue-cli-plugin-p11n/issues/35)
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/kazupon/vue-cli-plugin-p11n/compare/v0.2.1...v0.3.0) (2019-05-14)
 
